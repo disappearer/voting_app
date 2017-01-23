@@ -5,8 +5,12 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		{
 			associate: function(models){
-				Poll.belongsTo(models.User)
-        Poll.hasMany(models.Vote)
+				Poll.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        Poll.hasMany(models.Answer)
 			}
 		}
 	);

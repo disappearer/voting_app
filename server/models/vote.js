@@ -6,9 +6,23 @@ module.exports = function(sequelize, DataTypes) {
 		},
 		{
 			associate: function(models){
-				Vote.belongsTo(models.Poll)
-        Vote.belongsTo(models.Answer)
-        Vote.belongsTo(models.User)
+				Vote.belongsTo(models.Poll, {
+          onDelete: "CASCADE",
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        Vote.belongsTo(models.Answer, {
+          onDelete: "CASCADE",
+          foreignKey: {
+            allowNull: false
+          }
+        })
+        Vote.belongsTo(models.User, {
+          foreignKey: {
+            allowNull: false
+          }
+        })
 			}
 		}
 	);

@@ -1,8 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var User = sequelize.define('User', {
-			username: DataTypes.STRING,
-      cookie: DataTypes.STRING,
+			twitterUserId: DataTypes.STRING
 		},
 		{
 			associate: function(models){
