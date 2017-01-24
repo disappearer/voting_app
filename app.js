@@ -4,14 +4,14 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
 // var index = require('.server/routes/index');
-// var todos = require('.server/routes/todos');
+var polls = require('./server/routes/polls');
 
 var app = express();
 
 var db = require('./config/sequelize')
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, 'node_modules/angular')))
 
 // app.use('/', index);
-// app.use('/todos', todos);
+app.use('/polls', polls);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -31,44 +31,41 @@ exports.poll = function(req, res, next, id) {
  * Create a poll
  */
 exports.create = function(req, res) {
-    var pollObj = {
-      question: req.body.question,
-      UserId: req.body.userid
-    }
-
-    var answers = req.body.answers
-    // save and return and instance of poll on the res object.
-    db.Poll.create(pollObj).then(function(poll){
-        if(!poll){
-            return res.send('users/signup', {errors: new StandardError('Poll could not be created')});
-        } else {
-            Promise.all(answers.map(function(answer){
-              answer.PollId = poll.id
-              return db.Answer.create(answer)
-            })).then(function(results){
-              return res.jsonp(poll)
-            })
-        }
-    }).catch(function(err){
-        return res.send('users/signup', {
-            errors: err,
-            status: 500
-        });
-    });
+  var pollObj = {
+    question: req.body.question,
+    UserId: req.body.userid
+  }
+  var answers = req.body.answers
+  // save and return and instance of poll on the res object.
+  db.Poll.create(pollObj).then(function(poll){
+      if(!poll){
+          return res.send('users/signup', {errors: new StandardError('Poll could not be created')});
+      } else {
+          // when poll is created, create poll answers
+          Promise.all(answers.map(function(answer){
+            answer.PollId = poll.id
+            return db.Answer.create(answer)
+          })).then(function(results){
+            return res.jsonp(poll)
+          })
+      }
+  }).catch(function(err){
+      return res.send('users/signup', {
+          errors: err,
+          status: 500
+      });
+  });
 };
 
 /**
- * Update a poll
+ * Update a poll (used only for adding answers, i.e. poll options)
  */
 exports.update = function(req, res) {
 
     // create a new variable to hold the poll that was placed on the req object.
-    var poll = req.poll;
-
-    poll.updateAttributes({
-        title: req.body.title,
-        content: req.body.content
-    }).then(function(a){
+    var answer = req.body;
+    answer.PollId = req.poll.id
+    db.Answer.create(answer).then(function(a){
         return res.jsonp(a);
     }).catch(function(err){
         return res.render('error', {
@@ -97,19 +94,30 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Show an poll
+ * Show a poll
  */
 exports.show = function(req, res) {
     // Sending down the poll that was just preloaded by the polls.poll function
     // and saves poll on the req object.
-    return res.jsonp(req.poll);
+    req.poll.getAnswers().then(function(answers){
+      var poll = {
+        id: req.poll.id,
+        question: req.poll.question,
+        UserId: req.poll.UserId,
+        answers: []
+      }
+      answers.forEach(function(answer){
+        poll.answers.push(answer.toJSON())
+      })
+      return res.jsonp(poll);
+    })
 };
 
 /**
  * List of Polls
  */
 exports.all = function(req, res) {
-    db.Poll.findAll({include: [{model:db.User, attributes: ['id', 'username', 'name']}]}).then(function(polls){
+    db.Poll.findAll().then(function(polls){
         return res.jsonp(polls);
     }).catch(function(err){
         return res.render('error', {
