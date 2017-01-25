@@ -3,8 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 
-// var index = require('.server/routes/index');
 var polls = require('./server/routes/polls');
+var users = require('./server/routes/users');
 
 var app = express();
 
@@ -20,11 +20,25 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(require('express-session')({ secret: 'cave opener', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'client')));
 app.use(express.static(path.join(__dirname, 'node_modules/angular')))
 
+//use passport session
+var passport = require('./config/passport')
+app.use(passport.initialize());
+app.use(passport.session());
+
+// custom middleware for logging user from requests
+app.use(function(req,res,next){
+  if(req.user) console.log(req.user.twitterName);
+  else console.log('Not signed in.')
+  next();
+})
+
 // app.use('/', index);
 app.use('/polls', polls);
+app.use('/', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

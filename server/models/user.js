@@ -1,7 +1,9 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var User = sequelize.define('User', {
-			twitterUserId: DataTypes.STRING
+			twitterUserId: DataTypes.STRING,
+      twitterUserName: DataTypes.STRING,
+      twitterName: DataTypes.STRING
 		},
 		{
 			associate: function(models){

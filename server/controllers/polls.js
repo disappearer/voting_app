@@ -131,7 +131,7 @@ exports.all = function(req, res) {
  * Poll authorizations routing middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-    if (req.poll.User.id !== req.user.id) {
+    if (req.poll.UserId !== req.user.id) {
       return res.send(401, 'User is not authorized');
     }
     next();
