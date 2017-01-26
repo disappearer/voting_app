@@ -21,8 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-session')({ secret: 'cave opener', resave: true, saveUninitialized: true }));
-app.use(express.static(path.join(__dirname, 'client')));
-app.use(express.static(path.join(__dirname, 'node_modules/angular')))
+app.use(express.static(path.join(__dirname, 'client')))
+app.use('/', express.static(path.join(__dirname, 'client/views')));
 
 //use passport session
 var passport = require('./config/passport')
@@ -32,7 +32,7 @@ app.use(passport.session());
 // custom middleware for logging user from requests
 app.use(function(req,res,next){
   if(req.user) console.log(req.user.twitterName);
-  else console.log('Not signed in.')
+  else console.log('Not signed in.');
   next();
 })
 

@@ -46,8 +46,12 @@ p {
   color: #444;
 }
 
+#poll-list {
+  margin: 30px 10px 30px 10px;
+}
+
 .row {
-  margin: 0;
+  margin: 5px;
   text-align: center;
   border: 1px solid #ccc;
   padding: 10px;
