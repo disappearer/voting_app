@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-session')({ secret: 'cave opener', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'client')))
-app.use('/', express.static(path.join(__dirname, 'client/views')));
 
 //use passport session
 var passport = require('./config/passport')
@@ -39,6 +38,7 @@ app.use(function(req,res,next){
 // app.use('/', index);
 app.use('/polls', polls);
 app.use('/', users);
+app.use('/', express.static(path.join(__dirname, 'client/views')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

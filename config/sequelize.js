@@ -4,6 +4,11 @@ var Sequelize = require('sequelize')
 var _ = require('lodash')
 var db = {}
 
+var user = process.env.MYSQL_USER;
+var password = process.env.MYSQL_PASSWORD;
+var host = process.env.MYSQL_HOST;
+var database = process.env.MYSQL_DB;
+
 var sequelize = new Sequelize(database, user, password, {
   host: host,
   dialect: 'mysql',
