@@ -1,0 +1,73 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+:root {
+  --main-color-light: #098;
+  --main-color-dark: #087;
+}
+
+.btn-primary {
+  margin-top: : 15px;
+  margin-bottom: : 5px;
+  background-color: var(--main-color-light);
+  border-color: #097;
+}
+
+.btn-primary:hover {
+  background-color: var(--main-color-dark);
+  border-color: #086;
+}
+
+.navbar-brand {
+  margin-right: 20px;
+}
+
+#navbar-title {
+  color: var(--main-color-light);
+  font-size: 26px;
+}
+
+.login-icon {
+  margin-right: 5px;
+}
+
+.navbar-right {
+  margin-right: 0px;
+}
+
+.poll-list {
+  list-style-type: none;
+}
+
+.container {
+  /*background-color: blue;*/
+}
+
+.jumbotron {
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  /*background-color: red;*/
+}
+
+p {
+  color: #444;
+}
+
+.col-md-12 {
+  /*background-color: green;*/
+}
+
+.row {
+  margin: 0;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f5f5f5;
+  /*background-color: yellow;*/
+}
+
+a {
+  color: var(--main-color-dark);
+}
