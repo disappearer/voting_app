@@ -36,27 +36,14 @@ body {
   margin-right: 0px;
 }
 
-.poll-list {
-  list-style-type: none;
-}
-
-.container {
-  /*background-color: blue;*/
-}
-
 .jumbotron {
   color: #333;
   text-align: center;
   padding: 10px;
-  /*background-color: red;*/
 }
 
 p {
   color: #444;
-}
-
-.col-md-12 {
-  /*background-color: green;*/
 }
 
 .row {
@@ -65,7 +52,6 @@ p {
   border: 1px solid #ccc;
   padding: 10px;
   background-color: #f5f5f5;
-  /*background-color: yellow;*/
 }
 
 a {
