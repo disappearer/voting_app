@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(require('express-session')({ secret: 'cave opener', resave: true, saveUninitialized: true }));
 app.use(express.static(path.join(__dirname, 'client')))
+app.use(express.static(path.join(__dirname, 'node_modules/angular')))
 
 //use passport session
 var passport = require('./config/passport')

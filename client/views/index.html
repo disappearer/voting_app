@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -26,7 +26,7 @@
 
     <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
+      <div class="container" ng-controller="MainController">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
@@ -38,75 +38,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
-                <li role="separator" class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
-              </ul>
-            </li>
+            <li class="active"><a href="/">Home</a></li>
+            <li ng-show="user"><a href="/new">New Poll</a></li>
           </ul>
           <div class="nav navbar-nav navbar-right">
-            <a class="btn btn-primary navbar-btn" href="../../components/#navbar" role="button"><i class="fa fa-twitter fa-lg login-icon" aria-hidden="true"></i>
+            <a class="btn btn-primary navbar-btn" href="/login" role="button" ng-show="!user"><i class="fa fa-twitter fa-lg login-icon" aria-hidden="true"></i>
 Sign in with Twitter</a>
+            <li class="dropdown" ng-show="user">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.twitterName}} <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a ng-click="signout()">Log out</a></li>
+              </ul>
+            </li>
           </div>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
 
-    <div class="container">
-
-      <div class="jumbotron">
-        <h2>Voting App</h2>
-        <h4>a Free Code Camp challenge</h4>
-        <br>
-        <p>Select a poll to vote on, or <a href="#">sign in</a> to create one.</p>
-        <div id="poll-list">
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-              <a href="#">Poll</a>
-            </div>
-          </div>
-        </div> <!-- poll-list -->
-      </div>
+    <div class="container" ng-view>
 
     </div> <!-- /container -->
 
@@ -114,8 +63,11 @@ Sign in with Twitter</a>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="/js/app.js"></script>
+    <script src="/js/controllers/pollsController.js"></script>
   </body>
 </html>
