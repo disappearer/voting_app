@@ -7,9 +7,10 @@ angular.module('app.polls', ['ngRoute'])
         controller: 'PollsController'
       })
   }])
-  .controller('PollsController', ['$scope', '$http', function($scope){
+  .controller('PollsController', ['$scope', '$http', function($scope, $http){
     $http.get('/polls').then(function succesCallback(response){
-      $scope.polls = response;
+      if(response.data.length==0) $scope.polls = null;
+      else $scope.polls = response.data;
     },
     function errorCallback(response){
       $scope.polls = null;

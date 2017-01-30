@@ -1,0 +1,31 @@
+<div class="jumbotron">
+  <h2>New Poll</h2>
+  <br>
+  <form  id="poll-form" ng-submit="createPoll()">
+    <div class="row">
+      <div class="col-md-3">
+        <label>Question:</label>
+      </div>
+      <div class="col-md-9">
+        <input type="text" ng-model="question" placeholder="Poll Question"/>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <h4>Answers</h4>
+    </div>
+    <div class="row ansa" ng-repeat="answer in answers track by $index">
+      <div class="col-md-3">
+        <label>Answer {{$index+1}}:</label>
+      </div>
+      <div class="col-md-9">
+        <input type="text" ng-model="answer.text" placeholder="Answer {{$index+1}}"/>
+      </div>
+    </div>
+    <div class="row" id="poll-btns">
+      <div class="btn btn-primary" ng-click="addAnswer()">Add answer</div>
+      <div class="btn btn-primary" ng-click="submit()">Create Poll</div>
+    </div>
+  </form>
+
+</div>
