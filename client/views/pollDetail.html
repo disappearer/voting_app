@@ -1,0 +1,18 @@
+<div class="jumbotron" id="poll-detail">
+  <h2>{{poll.question}}</h2>
+  <div class="row">
+    <div class="col-md-6">
+      <form>
+        <div ng-repeat="answer in poll.answers">
+          <label>
+            <input type="radio" name="asdf" ng-model="poll.choice" ng-value="answer.id">
+            {{answer.text}} (id: {{answer.id}}). Votes: {{answer.votes}}
+          </label><br />
+        </div>
+        <tt>Choice: {{poll.choice}}</tt>
+      </form>
+      <button class="btn btn-primary" ng-click="">Add answer</button>
+      <button class="btn btn-primary" ng-click="submit(poll.choice, poll.id)">Submit</button>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@ angular.module('app.newpoll', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/new', {
-        templateUrl: '/views/newpoll.html',
+        templateUrl: '/views/newPoll.html',
         controller: 'NewPollController'
       })
   }])
@@ -28,9 +28,7 @@ angular.module('app.newpoll', ['ngRoute'])
         userid: $scope.user.id,
         answers: $scope.answers
       };
-      console.log(pollObj);
       $http.post('/polls', pollObj).success(function(data){
-        console.log(data);
         $location.path('/')
       })
     };

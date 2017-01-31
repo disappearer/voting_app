@@ -21,6 +21,10 @@ body {
   border-color: #086;
 }
 
+.btn-primary:focus {
+  background-color: var(--main-color-dark);
+  border-color: #086;
+}
 .navbar-brand {
   margin-right: 20px;
 }
@@ -57,6 +61,7 @@ p {
   border: var(--border);
   padding: 10px;
   background-color: var(--bg-color-light-gray);
+  border-radius: 5px;
 }
 
 a {
@@ -78,6 +83,7 @@ a {
 #poll-form {
   padding: 20px;
   border: var(--border);
+  border-radius: 5px;
   background-color: var(--bg-color-light-gray);
 }
 
@@ -99,4 +105,8 @@ hr {
 
 #poll-btns {
   margin-top: 15px;
+}
+
+#poll-detail {
+  text-align: left;
 }

@@ -18,11 +18,7 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
           }
         })
-        Vote.belongsTo(models.User, {
-          foreignKey: {
-            allowNull: false
-          }
-        })
+        Vote.belongsTo(models.User)
 			}
 		}
 	);

@@ -1,11 +1,11 @@
 
-angular.module('app', ['ngRoute', 'app.polls', 'app.newpoll'])
+angular.module('app', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldetail'])
 
   .factory('userLoggedIn', ['$http', function($http){
     return $http.get('/loggedin');
   }])
 
-  .controller('MainController', ['$scope', '$http', '$location', 'userLoggedIn', function($scope, $http, $location, userLoggedIn){
+  .controller('MainController', ['$scope', '$http', '$location', '$window', 'userLoggedIn', function($scope, $http, $location, $window, userLoggedIn){
 
     userLoggedIn.success(function (user){
       $scope.user = user;
@@ -16,7 +16,7 @@ angular.module('app', ['ngRoute', 'app.polls', 'app.newpoll'])
         if (data) {
           if (data.status == 'success') {
             $scope.user = null;
-            $location.path('/');
+            $window.location.reload();
           }
         }
       })

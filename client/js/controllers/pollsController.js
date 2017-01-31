@@ -7,13 +7,17 @@ angular.module('app.polls', ['ngRoute'])
         controller: 'PollsController'
       })
   }])
-  .controller('PollsController', ['$scope', '$http', function($scope, $http){
-    $http.get('/polls').then(function succesCallback(response){
-      if(response.data.length==0) $scope.polls = null;
-      else $scope.polls = response.data;
-    },
-    function errorCallback(response){
-      $scope.polls = null;
-      $scope.err_message = response;
-    });
+  .controller('PollsController', ['$scope', '$http', 'userLoggedIn',
+    function($scope, $http, userLoggedIn){
+      userLoggedIn.success(function(data){
+        $scope.user = data;
+      });
+      $http.get('/polls').then(function succesCallback(response){
+        if(response.data.length==0) $scope.polls = null;
+        else $scope.polls = response.data;
+      },
+      function errorCallback(response){
+        $scope.polls = null;
+        $scope.err_message = response;
+      });
   }]);

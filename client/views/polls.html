@@ -2,13 +2,12 @@
   <h2>Voting App</h2>
   <h4>a Free Code Camp challenge</h4>
   <br>
-  <p>Select a poll to vote on, or <a href="/login">sign in</a> to create one.</p>
-  <p>{{user.twitterName}}</p>
+  <p>Select a poll to vote on, or <span ng-show="!user"><a href="/login">sign in</a> to </span>create one.</p>
   <div id="poll-list" ng-show="polls">
     <div ng-repeat="poll in polls">
       <div class="row">
         <div class="col-md-12">
-          <a href="#">{{poll.question}}</a>
+          <a href="#/poll/{{poll.id}}">{{poll.question}}</a>
         </div>
       </div>
     </div>
