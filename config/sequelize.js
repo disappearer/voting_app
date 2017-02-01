@@ -36,9 +36,7 @@ Object.keys(db).forEach(function (modelName) {
 })
 
 // create tables if they don't exist
-var FORCE_DB_SYNC = true
-FORCE_DB_SYNC = false
-sequelize.sync({force: FORCE_DB_SYNC})
+sequelize.sync()
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

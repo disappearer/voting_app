@@ -1,5 +1,5 @@
 
-angular.module('app', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldetail'])
+angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldetail'])
 
   .factory('userLoggedIn', ['$http', function($http){
     return $http.get('/loggedin');

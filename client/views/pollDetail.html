@@ -5,14 +5,16 @@
       <form>
         <div ng-repeat="answer in poll.answers">
           <label>
-            <input type="radio" name="asdf" ng-model="poll.choice" ng-value="answer.id">
-            {{answer.text}} (id: {{answer.id}}). Votes: {{answer.votes}}
+            <input type="radio" name="asdf" ng-model="poll.choice" ng-value="$index">
+            {{answer.text}} (Votes: {{answer.votes}})
           </label><br />
         </div>
-        <tt>Choice: {{poll.choice}}</tt>
+        <div id="voted-alert" ng-show="showVoted">
+          You have already voted on this poll.
+        </div>
       </form>
       <button class="btn btn-primary" ng-click="">Add answer</button>
-      <button class="btn btn-primary" ng-click="submit(poll.choice, poll.id)">Submit</button>
+      <button class="btn btn-primary" ng-click="submit()">Submit</button>
     </div>
   </div>
 </div>
