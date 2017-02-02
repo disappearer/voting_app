@@ -9,8 +9,8 @@
             {{answer.text}} (Votes: {{answer.votes}})
           </label><br />
         </div>
-        <div id="voted-alert" ng-show="showVoted">
-          You have already voted on this poll.
+        <div id="vote-alert" ng-show="showVoteAlert">
+          {{voteAlertMessage}}
         </div>
       </form>
       <button class="btn btn-primary" ng-click="">Add answer</button>

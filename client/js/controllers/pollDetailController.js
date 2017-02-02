@@ -12,15 +12,20 @@ angular.module('app.polldetail', ['ngRoute'])
       $scope.user = user;
     });
 
-    $scope.showVoted = false;
+    $scope.showVoteAlert = false;
 
     var pollId = $routeParams.pollId;
     $http.get('/polls/' + pollId).success(function(poll){
       $scope.poll = poll;
-      $scope.poll.choice = poll.answers[0].id;
     });
 
     $scope.submit = function(){
+      console.log($scope.poll.choice);
+      if(!$scope.poll.choice){
+        $scope.showVoteAlert = true;
+        $scope.voteAlertMessage = 'You haven\'t chosen an answer. Choose wisely.';
+        return;
+      }
       var answerIndex = $scope.poll.choice;
       var voteObj = {
         PollId: pollId,
@@ -33,9 +38,11 @@ angular.module('app.polldetail', ['ngRoute'])
         if(data.status === 'success'){
           $scope.poll.answers[answerIndex].votes++;
         } else if (data.status === 'error'){
-          $scope.showVoted = true;
+          $scope.showVoteAlert = true;
+          $scope.voteAlertMessage = 'You have already voted on this poll.'
         } else {
-          console.error('Something went horribly wrong.');
+          $scope.showVoteAlert = true;
+          $scope.voteAlertMessage = 'Something went horribly wrong. Initiate evacuation sequence.'
         }
       })
     }
