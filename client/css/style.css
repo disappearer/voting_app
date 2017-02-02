@@ -95,12 +95,42 @@ a {
   width: 100%;
 }
 
+#poll-form .row {
+  margin: 10px 0 10px 0;
+  height: 30px;
+  display: table;
+  width: 100%;
+}
+
 hr {
   border-color: #ccc;
 }
 
-.ansa {
-  margin: 5px;
+.option input {
+  width: 90% !important;
+}
+
+.fa-times:hover{
+  color: #ccc;
+  cursor: pointer;
+}
+
+#poll-form .col-md-9, #poll-form .col-md-3 {
+  display: table-cell;
+  float: none !important;
+  vertical-align: middle;
+}
+
+#poll-form .col-md-9 {
+  text-align: left;
+}
+
+#new-poll-alert {
+  text-align: center;
+  padding: 10px;
+  border: var(--border);
+  border-radius: 5px;
+  background-color: #eee;
 }
 
 #poll-btns {
