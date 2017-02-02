@@ -5,16 +5,26 @@
       <form>
         <div ng-repeat="answer in poll.answers">
           <label>
-            <input type="radio" name="asdf" ng-model="poll.choice" ng-value="$index">
+            <input type="radio" name="poll-option" ng-model="poll.choice" ng-value="$index">
             {{answer.text}} (Votes: {{answer.votes}})
           </label><br />
+        </div>
+        <div ng-show="user">
+          <label>
+            <input type="radio" name="poll-option" ng-model="poll.choice" ng-value="poll.answers.length">
+            Other (custom option)
+          </label><br />
+        </div>
+        <div ng-show="poll.choice==poll.answers.length">
+          <input type="text" ng-model="customOption.text" placeholder="Custom Option">
         </div>
         <div id="vote-alert" ng-show="showVoteAlert">
           {{voteAlertMessage}}
         </div>
       </form>
-      <button class="btn btn-primary" ng-click="">Add answer</button>
-      <button class="btn btn-primary" ng-click="submit()">Submit</button>
+      <div id="poll-btns">
+        <button class="btn btn-primary" ng-click="submit()">Submit</button>
+      </div>
     </div>
   </div>
 </div>

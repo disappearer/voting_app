@@ -7,36 +7,64 @@ angular.module('app.polldetail', ['ngRoute'])
         controller: 'PollDetailController'
       });
   }])
-  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userLoggedIn', function($scope, $http, $location, $routeParams, userLoggedIn){
-    userLoggedIn.success(function (user){
-      $scope.user = user;
-    });
-
+  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', '$q', 'userLoggedIn', function($scope, $http, $location, $routeParams, $q, userLoggedIn){
     $scope.showVoteAlert = false;
+    $scope.showAddOption = false;
+    $scope.addedOptions = [];
 
     var pollId = $routeParams.pollId;
-    $http.get('/polls/' + pollId).success(function(poll){
-      $scope.poll = poll;
+    $q.all([
+      userLoggedIn,
+      $http.get('/polls/' + pollId)
+    ]).then(function(results){
+      $scope.user = results[0].data;
+      $scope.poll = results[1].data;
+      $scope.poll.choice = null;
+      $scope.showAddOption = $scope.poll.UserId == $scope.user.id;
+    }).catch(function(err){
+      console.error(err);
     });
 
     $scope.submit = function(){
-      console.log($scope.poll.choice);
-      if(!$scope.poll.choice){
+      if($scope.poll.choice==null){
         $scope.showVoteAlert = true;
         $scope.voteAlertMessage = 'You haven\'t chosen an answer. Choose wisely.';
         return;
       }
+      if(!$scope.customOption && ($scope.poll.choice==$scope.poll.answers.length)){
+        $scope.showVoteAlert = true;
+        $scope.voteAlertMessage = 'Please enter a custom option.';
+        return;
+      }
+
       var answerIndex = $scope.poll.choice;
       var voteObj = {
         PollId: pollId,
-        AnswerId: $scope.poll.answers[answerIndex].id,
+        AnswerId: $scope.customOption ? $scope.customOption.text :
+                  $scope.poll.answers[answerIndex].id,
       };
       if($scope.user){
         voteObj.UserId = $scope.user.id;
       }
-      $http.post('/polls/' + pollId, voteObj).success(function(data){
+      var sendData = {
+        custom: false,
+        voteObj: voteObj
+      }
+      if($scope.customOption){
+        sendData.custom = true;
+      }
+
+      $http.post('/polls/' + pollId, sendData).success(function(data){
         if(data.status === 'success'){
-          $scope.poll.answers[answerIndex].votes++;
+          if($scope.customOption){
+            $scope.poll.answers.push({
+              text: $scope.customOption.text,
+              votes: 1
+            });
+          } else {
+            $scope.poll.answers[answerIndex].votes++;
+          }
+          $scope.showVoteAlert = false;
         } else if (data.status === 'error'){
           $scope.showVoteAlert = true;
           $scope.voteAlertMessage = 'You have already voted on this poll.'
@@ -45,5 +73,5 @@ angular.module('app.polldetail', ['ngRoute'])
           $scope.voteAlertMessage = 'Something went horribly wrong. Initiate evacuation sequence.'
         }
       })
-    }
+    };
   }]);
