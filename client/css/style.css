@@ -25,13 +25,15 @@ body {
   background-color: var(--main-color-dark);
   border-color: #086;
 }
+
 .navbar-brand {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 #navbar-title {
   color: var(--main-color-light);
   font-size: 26px;
+  margin-left: 0;
 }
 
 .login-icon {
@@ -148,4 +150,5 @@ hr {
   border: var(--border);
   border-radius: 5px;
   background-color: var(--bg-color-light-gray);
+  display: inline-block;
 }
