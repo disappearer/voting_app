@@ -7,13 +7,21 @@ router
   .get('/login', passport.authenticate('twitter'))
 
   .get('/auth/twitter/callback',
-    passport.authenticate('twitter', {
-      successRedirect: '/',
-      failureRedirect: '/login',
-    }))
+    passport.authenticate('twitter', { failureRedirect: '/login' }),
+    function(req, res) {
+      // add the user object to the $scope via login popup
+      res.redirect('/setuser');
+    }
+  )
 
   .get('/loggedin', users.isLoggedIn)
 
-  .get('/signout', users.signout);
+  .get('/signout', users.signout)
+
+  .get('/setuser', function(req, res){
+    // add the user object to the $scope via login popup
+    res.locals.user = req.isAuthenticated() ? req.user : null;
+    res.render('auth');
+  });
 
 module.exports = router;

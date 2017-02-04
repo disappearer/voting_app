@@ -7,20 +7,26 @@ angular.module('app.polldetail', ['ngRoute'])
         controller: 'PollDetailController'
       });
   }])
-  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', '$q', 'userLoggedIn', function($scope, $http, $location, $routeParams, $q, userLoggedIn){
+  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', '$q', 'userFactory', function($scope, $http, $location, $routeParams, $q, userFactory){
     $scope.showVoteAlert = false;
     $scope.showAddOption = false;
-    $scope.addedOptions = [];
+
+    userFactory.userLoggedIn();
+
+    $scope.$watch(function() { return userFactory.getUser() },
+                  function(userObj){
+                    $scope.user = userObj;
+                    $scope.showVoteAlert = false;
+                    if($scope.poll) $scope.poll.choice = null;
+                  });
 
     var pollId = $routeParams.pollId;
-    $q.all([
-      userLoggedIn,
-      $http.get('/polls/' + pollId)
-    ]).then(function(results){
-      $scope.user = results[0].data;
-      $scope.poll = results[1].data;
+    $http.get('/polls/' + pollId).then(function(response){
+      $scope.poll = response.data;
       $scope.poll.choice = null;
-      $scope.showAddOption = $scope.poll.UserId == $scope.user.id;
+      if($scope.user){
+        $scope.showAddOption = $scope.poll.UserId == $scope.user.id;
+      }
     }).catch(function(err){
       console.error(err);
     });

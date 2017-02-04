@@ -43,12 +43,12 @@
             <li ng-show="user" ng-class="{active: isActive('/new')}" ng-click="homeActive=false; newActive=true"><a href="/#/new">New Poll</a></li>
           </ul>
           <div class="nav navbar-nav navbar-right">
-            <a class="btn btn-primary navbar-btn" href="/login" role="button" ng-show="!user"><i class="fa fa-twitter fa-lg login-icon" aria-hidden="true"></i>
+            <a class="btn btn-primary navbar-btn" ng-click="login()" role="button" ng-show="!user"><i class="fa fa-twitter fa-lg login-icon" aria-hidden="true"></i>
 Sign in with Twitter</a>
             <li class="dropdown" ng-show="user">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.twitterName}} <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a ng-click="signout()">Log out</a></li>
+                <li><a ng-click="logout()">Log out</a></li>
               </ul>
             </li>
           </div>

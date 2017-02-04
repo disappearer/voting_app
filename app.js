@@ -23,6 +23,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(function(req, res, next){
+  console.log('\n\n=======================================================');
+  next();
+})
+
 // session options
 var ms = require('millisecond');
 app.use(session({

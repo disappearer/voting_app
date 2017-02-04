@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="votingApp">
+  <head>
+    <title>Voting App Authentication</title>
+  </head>
+  <body>
+    <h3>Please wait. Logging in.</h3>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="/js/app.js"></script>
+
+    <script>
+      window.user = <%- JSON.stringify(user) %>;
+      window.authorized = true;
+    </script>
+
+  </body>
+</html>
