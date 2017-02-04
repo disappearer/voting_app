@@ -39,8 +39,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li ng-class="{active: isActive('/')}" ng-click="homeActive=true; newActive=false"><a href="/#/">Home</a></li>
-            <li ng-show="user" ng-class="{active: isActive('/new')}" ng-click="homeActive=false; newActive=true"><a href="/#/new">New Poll</a></li>
+            <li ng-class="{active: isActive('/')}" ng-click="homeActive=true; newActive=false; pollsActive=false"><a href="/#/">Home</a></li>
+            <li ng-show="user" ng-class="{active: isActive('/new')}" ng-click="homeActive=false; newActive=true; pollsActive=false"><a href="/#/new">New Poll</a></li>
+            <li ng-show="user" ng-class="{active: isActive('/userpolls')}" ng-click="homeActive=false; newActive=false; pollsActive=true"><a href="/#/userpolls">My Polls</a></li>
           </ul>
           <div class="nav navbar-nav navbar-right">
             <a class="btn btn-primary navbar-btn" ng-click="login()" role="button" ng-show="!user"><i class="fa fa-twitter fa-lg login-icon" aria-hidden="true"></i>
@@ -66,10 +67,11 @@ Sign in with Twitter</a>
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
     <script src="/js/app.js"></script>
     <script src="/js/controllers/pollsController.js"></script>
+    <script src="/js/controllers/userPollsController.js"></script>
     <script src="/js/controllers/newPollController.js"></script>
     <script src="/js/controllers/pollDetailController.js"></script>
   </body>

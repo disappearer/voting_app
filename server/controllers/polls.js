@@ -128,6 +128,24 @@ exports.all = function(req, res) {
 };
 
 /**
+ * List of User Polls
+ */
+exports.user = function(req, res) {
+    db.Poll.findAll({
+      where: {
+        UserId: req.user.id
+      }
+    }).then(function(polls){
+        return res.jsonp(polls);
+    }).catch(function(err){
+        return res.jsonp({
+            status: 'error',
+            message: 'Some error that I wrote just for you my love.'
+        });
+    });
+};
+
+/**
  * Poll authorizations routing middleware
  */
 exports.hasAuthorization = function(req, res, next) {

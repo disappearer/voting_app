@@ -6,12 +6,14 @@ var votes = require('../controllers/votes');
 
 router.route('/')
   .get(polls.all)
-  .post(users.requiresLogin,polls.create)
+  .post(users.requiresLogin,polls.create);
+router.route('/user/')
+  .get(users.requiresLogin, polls.user);
 router.route('/:pollId')
   .get(polls.show)
   .post(votes.create)
   .put(users.requiresLogin, polls.hasAuthorization, polls.update)
-  .delete(users.requiresLogin, polls.hasAuthorization, polls.destroy)
+  .delete(users.requiresLogin, polls.hasAuthorization, polls.destroy);
 
 router.param('pollId', polls.poll)
 

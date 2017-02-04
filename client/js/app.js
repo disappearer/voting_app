@@ -1,5 +1,5 @@
 
-angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldetail'])
+angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldetail', 'app.userpolls'])
 
   .factory('userFactory', ['$http', '$window', '$interval', function($http, $window, $interval){
     var user = null;
@@ -21,7 +21,7 @@ angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldet
             popup.close();
           }
         } catch(e){
-          //console.error(e);
+          console.error(e);
         }
       }, interval);
     }
@@ -37,8 +37,9 @@ angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldet
     }
 
     function userLoggedIn(){
-      $http.get('/loggedin').success(function(data){
+       return $http.get('/loggedin').success(function(data){
         user = data;
+        return Promise.resolve();
       });
     }
 
