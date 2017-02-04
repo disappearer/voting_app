@@ -7,17 +7,20 @@ angular.module('app.newpoll', ['ngRoute'])
         controller: 'NewPollController'
       })
   }])
-  .controller('NewPollController', ['$scope', '$http', '$location', 'userLoggedIn', function($scope, $http, $location, userLoggedIn){
+  .controller('NewPollController', ['$scope', '$http', '$location', 'userFactory', function($scope, $http, $location, userFactory){
     $scope.showNewPollAlert = false;
 
-    userLoggedIn.success(function (user){
-      if(!user){
-        // unauthenticated users forbidden
-        $location.path('/');
-      }
-      $scope.user = user;
-    });
+    userFactory.userLoggedIn();
 
+    $scope.$watch(function() { return userFactory.getUser() },
+                  function(userObj){
+                    if(!userObj){
+                      $location.path('/');
+                    } else {
+                      $scope.user = userObj;
+                    }
+                  });
+    
     $scope.answers = [{text: '', votes: 0}, {text: '', votes: 0}]
 
     $scope.addAnswer = function(){
