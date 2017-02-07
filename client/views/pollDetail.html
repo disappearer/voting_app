@@ -1,7 +1,7 @@
 <div class="jumbotron" id="poll-detail">
   <h2>{{poll.question}}</h2>
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
       <form>
         <div ng-repeat="answer in poll.answers">
           <label>
@@ -25,6 +25,10 @@
       <div id="poll-btns">
         <button class="btn btn-primary" ng-click="submit()">Submit</button>
       </div>
+    </div>
+    <div class="col-md-8">
+      <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true">
+      </canvas>
     </div>
   </div>
 </div>

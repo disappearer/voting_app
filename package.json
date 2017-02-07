@@ -10,6 +10,7 @@
   "license": "GPL-3.0",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-chart.js": "^1.1.1",
     "body-parser": "^1.15.2",
     "connect-session-sequelize": "^4.1.0",
     "cookie-parser": "^1.4.3",

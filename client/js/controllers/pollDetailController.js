@@ -1,5 +1,5 @@
 
-angular.module('app.polldetail', ['ngRoute'])
+angular.module('app.polldetail', ['ngRoute', 'chart.js'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/poll/:pollId', {
@@ -7,7 +7,7 @@ angular.module('app.polldetail', ['ngRoute'])
         controller: 'PollDetailController'
       });
   }])
-  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', '$q', 'userFactory', function($scope, $http, $location, $routeParams, $q, userFactory){
+  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userFactory', function($scope, $http, $location, $routeParams, userFactory){
     $scope.showVoteAlert = false;
     $scope.showAddOption = false;
 
@@ -27,6 +27,13 @@ angular.module('app.polldetail', ['ngRoute'])
       if($scope.user){
         $scope.showAddOption = $scope.poll.UserId == $scope.user.id;
       }
+      // chart labels and data
+      $scope.labels = $scope.poll.answers.map(function(answer){
+        return answer.text;
+      });
+      $scope.data = $scope.poll.answers.map(function(answer){
+        return answer.votes;
+      });
     }).catch(function(err){
       console.error(err);
     });
@@ -67,9 +74,16 @@ angular.module('app.polldetail', ['ngRoute'])
               text: $scope.customOption.text,
               votes: 1
             });
+            // update chart
+            $scope.labels.push($scope.customOption.text);
+            $scope.data.push(1);
           } else {
             $scope.poll.answers[answerIndex].votes++;
+            // update chart
+            $scope.data[answerIndex]++;
           }
+
+          // remove alert message if any
           $scope.showVoteAlert = false;
         } else if (data.status === 'error'){
           $scope.showVoteAlert = true;
