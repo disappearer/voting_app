@@ -17,6 +17,11 @@ var sequelize = new Sequelize(database, user, password, {
     max: 5,
     min: 0,
     idle: 10000
+  },
+
+  define: {
+    charset: 'utf8',
+    collate: 'utf8_general_ci'
   }
 })
 
