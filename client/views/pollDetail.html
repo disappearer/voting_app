@@ -26,9 +26,10 @@
         <button class="btn btn-primary" ng-click="submit()">Submit</button>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8" id="poll-chart-col">
       <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true">
       </canvas>
+      <button class="btn btn-primary" id="remove-btn" ng-show="poll.UserId===user.id" ng-click="removePoll()">Remove Poll</button>
     </div>
   </div>
 </div>

@@ -94,4 +94,11 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js'])
         }
       })
     };
+
+    $scope.removePoll = function(){
+      $http.delete('/polls/' + $scope.poll.id).success(function(data){
+        console.log(data);
+        $location.path('/');
+      })
+    }
   }]);
