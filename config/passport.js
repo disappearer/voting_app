@@ -5,7 +5,7 @@ var db = require('./sequelize')
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_KEY,
     consumerSecret: process.env.TWITTER_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+    callbackURL: process.env.TWITTER_CALLBACK
   },
   function(token, tokenSecret, profile, cb) {
     db.User.findOrCreate({

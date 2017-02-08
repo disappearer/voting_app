@@ -6,7 +6,7 @@ var users = require('../controllers/users')
 router
   .get('/login', passport.authenticate('twitter'))
 
-  .get('/auth/twitter/callback',
+  .get('/login/callback',
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     function(req, res) {
       // add the user object to the $scope via login popup
