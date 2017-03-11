@@ -144,6 +144,10 @@ hr {
   width: 80%;
 }
 
+#share-btn {
+  margin-top: 10px;
+}
+
 #poll-detail {
   text-align: left;
 }

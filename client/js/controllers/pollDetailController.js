@@ -1,5 +1,5 @@
 
-angular.module('app.polldetail', ['ngRoute', 'chart.js'])
+angular.module('app.polldetail', ['ngRoute', 'chart.js','720kb.socialshare'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/poll/:pollId', {
@@ -7,7 +7,7 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js'])
         controller: 'PollDetailController'
       });
   }])
-  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userFactory', function($scope, $http, $location, $routeParams, userFactory){
+  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userFactory', 'Socialshare', function($scope, $http, $location, $routeParams, userFactory, Socialshare){
     $scope.showVoteAlert = false;
     $scope.showAddOption = false;
 
@@ -97,6 +97,18 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js'])
         }
       })
     };
+
+    $scope.share = function(){
+      var url = $location.path();
+      Socialshare.share({
+        'provider': 'twitter',
+        'attrs': {
+          'socialshareText': 'Lexlabs Voting App | ' + $scope.poll.question,
+          'socialshareUrl': $location.get,
+          'socialshareHashtags': ['lexlabs', 'votingapp']
+        }
+      });
+    }
 
     $scope.removePoll = function(){
       $http.delete('/polls/' + $scope.poll.id).success(function(data){

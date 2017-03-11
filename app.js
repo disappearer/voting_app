@@ -43,6 +43,7 @@ app.use(session({
 // static content
 app.use(express.static(path.join(__dirname, 'client')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-chart.js/dist/')));
+app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-socialshare/dist/')));
 
 //use passport session
 var passport = require('./config/passport')
