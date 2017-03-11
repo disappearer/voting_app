@@ -34,6 +34,9 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js'])
       $scope.data = $scope.poll.answers.map(function(answer){
         return answer.votes;
       });
+      $scope.options = {
+        legend: {display: true, position: 'bottom'}
+      }
     }).catch(function(err){
       console.error(err);
     });

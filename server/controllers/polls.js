@@ -12,7 +12,6 @@ var db = require('../../config/sequelize');
  * Its purpose is to preload the poll on the req object then call the next function.
  */
 exports.poll = function(req, res, next, id) {
-    console.log('id => ' + id);
     db.Poll.find({
       where: {id: id}
     }).then(function(poll){
