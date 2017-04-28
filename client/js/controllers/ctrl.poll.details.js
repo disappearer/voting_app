@@ -3,7 +3,7 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js','720kb.socialshare'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/poll/:pollId', {
-        templateUrl: '/views/pollDetail.html',
+        templateUrl: '/views/view.poll.details.html',
         controller: 'PollDetailController'
       });
   }])

@@ -3,7 +3,7 @@ angular.module('app.polls', ['ngRoute','angularSpinners'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/', {
-        templateUrl: '/views/polls.html',
+        templateUrl: '/views/view.poll.list.html',
         controller: 'PollsController'
       })
   }])

@@ -3,7 +3,7 @@ angular.module('app.userpolls', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/userpolls', {
-        templateUrl: '/views/userPolls.html',
+        templateUrl: '/views/view.user.poll.list.html',
         controller: 'UserPollsController'
       })
   }])

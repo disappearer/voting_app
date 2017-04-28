@@ -3,7 +3,7 @@ angular.module('app.newpoll', ['ngRoute'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/new', {
-        templateUrl: '/views/newPoll.html',
+        templateUrl: '/views/view.poll.create.html',
         controller: 'NewPollController'
       })
   }])
