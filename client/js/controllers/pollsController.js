@@ -1,5 +1,5 @@
 
-angular.module('app.polls', ['ngRoute'])
+angular.module('app.polls', ['ngRoute','angularSpinners'])
   .config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
     $routeProvider
       .when('/', {
@@ -7,10 +7,11 @@ angular.module('app.polls', ['ngRoute'])
         controller: 'PollsController'
       })
   }])
-  .controller('PollsController', ['$scope', '$http', 'userFactory',
-    function($scope, $http, userFactory){
+  .controller('PollsController', ['$scope', '$http', 'userFactory', 'spinnerService',
+    function($scope, $http, userFactory, spinnerService){
+      $scope.loading = true;
       userFactory.userLoggedIn();
-      
+
       $scope.$watch(function() { return userFactory.getUser() },
                     function(userObj){ $scope.user = userObj });
 
@@ -19,6 +20,8 @@ angular.module('app.polls', ['ngRoute'])
       }
 
       $http.get('/polls').then(function succesCallback(response){
+        $scope.loading = false;
+        spinnerService.hide('listSpinner');
         if(response.data.length==0) $scope.polls = null;
         else $scope.polls = response.data;
       },

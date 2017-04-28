@@ -1,7 +1,10 @@
 <div class="jumbotron" id="poll-detail">
   <h2>{{poll.question}}</h2>
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-md-offset-4 text-center" ng-show="loading">
+      <spinner id="spinner" name="spinner" show="true" img-src="/img/spinner.gif"></spinner>
+    </div>
+    <div class="col-md-4" ng-show="!loading">
       <form>
         <div ng-repeat="answer in poll.answers">
           <label>
@@ -31,7 +34,7 @@
           Share on Twitter</button>
       </div>
     </div>
-    <div class="col-md-8" id="poll-chart-col">
+    <div class="col-md-8" id="poll-chart-col" ng-show="!loading">
       <canvas id="pie" class="chart chart-pie" chart-data="data" chart-labels="labels" chart-options="options" chart-legend="true">
       </canvas>
       <button class="btn btn-primary" id="remove-btn" ng-show="poll.UserId===user.id" ng-click="removePoll()">Remove Poll</button>

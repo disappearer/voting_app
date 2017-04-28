@@ -172,3 +172,9 @@ hr {
   background-color: #d33;
   border-color: #b11;
 }
+
+#spinner {
+  display: block;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}

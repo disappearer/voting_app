@@ -7,9 +7,10 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js','720kb.socialshare'])
         controller: 'PollDetailController'
       });
   }])
-  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userFactory', 'Socialshare', function($scope, $http, $location, $routeParams, userFactory, Socialshare){
+  .controller('PollDetailController', ['$scope', '$http', '$location', '$routeParams', 'userFactory', 'Socialshare', 'spinnerService', function($scope, $http, $location, $routeParams, userFactory, Socialshare, spinnerService){
     $scope.showVoteAlert = false;
     $scope.showAddOption = false;
+    $scope.loading = true;
 
     userFactory.userLoggedIn();
 
@@ -37,6 +38,9 @@ angular.module('app.polldetail', ['ngRoute', 'chart.js','720kb.socialshare'])
       $scope.options = {
         legend: {display: true, position: 'bottom'}
       }
+
+      $scope.loading = false;
+      spinnerService.hide('spinner');
     }).catch(function(err){
       console.error(err);
     });

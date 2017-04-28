@@ -44,6 +44,8 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'client')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-chart.js/dist/')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-socialshare/dist/')));
+app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-spinners/dist/')));
+app.use('/img', express.static(path.join(__dirname, 'client/images/')));
 
 //use passport session
 var passport = require('./config/passport')
