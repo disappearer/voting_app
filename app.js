@@ -16,17 +16,9 @@ var db = require('./config/sequelize')
 app.set('views', path.join(__dirname, 'server/views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-// app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-
-app.use(function(req, res, next){
-  console.log('\n\n=======================================================');
-  next();
-})
 
 // session options
 var ms = require('millisecond');
@@ -40,6 +32,11 @@ app.use(session({
   store: new SequelizeStore({db: db.sequelize})
 }));
 
+//use passport session
+var passport = require('./config/passport')
+app.use(passport.initialize());
+app.use(passport.session());
+
 // static content
 app.use(express.static(path.join(__dirname, 'client')));
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-chart.js/dist/')));
@@ -47,15 +44,10 @@ app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-so
 app.use('/scripts', express.static(path.join(__dirname, 'node_modules/angular-spinners/dist/')));
 app.use('/img', express.static(path.join(__dirname, 'client/images/')));
 
-//use passport session
-var passport = require('./config/passport')
-app.use(passport.initialize());
-app.use(passport.session());
-
-// app.use('/', index);
 app.use('/polls', polls);
 app.use('/', users);
 app.use('/', express.static(path.join(__dirname, 'client/views')));
+app.use('/', express.static(path.join(__dirname, 'favicon')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

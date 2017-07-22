@@ -10,7 +10,9 @@ router
     passport.authenticate('twitter', { failureRedirect: '/login' }),
     function(req, res) {
       // add the user object to the $scope via login popup
-      res.redirect('/setuser');
+      req.session.save(() => {
+        res.redirect('/setuser');
+      });
     }
   )
 

@@ -13,7 +13,6 @@ angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldet
       popup.authorized = false;
 
       var i = $interval(function(){
-        interval += 500;
         try {
           if(popup.authorized){
             $interval.cancel(i);
