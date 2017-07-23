@@ -75,6 +75,6 @@ angular.module('votingApp', ['ngRoute', 'app.polls', 'app.newpoll', 'app.polldet
   }])
 
   .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-    $locationProvider.hashPrefix('');
+    $locationProvider.html5Mode(true);
     $routeProvider.otherwise({redirectTo: '/'});
   }]);
