@@ -1,0 +1,16 @@
+.btn-primary {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  background-color: $main-color-light;
+  border-color: #097;
+}
+
+.btn-primary:hover {
+  background-color: $main-color-dark;
+  border-color: #086;
+}
+
+.btn-primary:focus {
+  background-color: $main-color-dark;
+  border-color: #086;
+}

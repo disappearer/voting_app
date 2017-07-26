@@ -10,7 +10,7 @@ var users = require('./server/routes/users');
 
 var app = express();
 
-var db = require('./config/sequelize')
+var db = require('./config/sequelize');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'server/views'));
@@ -48,6 +48,10 @@ app.use('/polls', polls);
 app.use('/', users);
 app.use('/', express.static(path.join(__dirname, 'client/views')));
 app.use('/', express.static(path.join(__dirname, 'favicon')));
+
+app.get('/*', function(req, res){
+    res.sendFile(__dirname + '/client/views/index.html');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

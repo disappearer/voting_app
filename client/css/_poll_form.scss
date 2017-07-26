@@ -1,0 +1,47 @@
+#poll-form {
+  padding: 20px;
+  border: $border;
+  border-radius: 5px;
+  background-color: $bg-color-light-gray;
+  .row {
+    margin: 10px 0 10px 0;
+    height: 30px;
+    display: table;
+    width: 100%;
+  }
+  .col-md-3 {
+    text-align: right;
+  }
+  .col-md-9 {
+    text-align: left;
+  }
+  .col-md-9, .col-md-3 {
+    display: table-cell;
+    float: none !important;
+    vertical-align: middle;
+  }
+  input {
+    width: 100%;
+  }
+}
+
+hr {
+  border-color: #ccc;
+}
+
+.option input {
+  width: 90% !important;
+}
+
+.fa-times:hover{
+  color: #ccc;
+  cursor: pointer;
+}
+
+#new-poll-alert {
+  text-align: center;
+  padding: 10px;
+  border: $border;
+  border-radius: 5px;
+  background-color: #eee;
+}

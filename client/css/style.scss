@@ -1,0 +1,55 @@
+$main-color-light: #098;
+$main-color-dark: #087;
+$bg-color-light-gray: #f5f5f5;
+$border: 1px solid #ccc;
+
+@import 'poll_list';
+@import 'buttons';
+@import 'poll_form';
+@import 'poll_details';
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.navbar-brand {
+  margin-right: 10px;
+}
+
+#navbar-title {
+  color: $main-color-light;
+  font-size: 26px;
+  margin-left: 0;
+}
+
+.login-icon {
+  margin-right: 5px;
+}
+
+.navbar-right {
+  margin-right: 0px;
+}
+
+.dropdown-menu li:hover {
+    cursor: pointer;
+}
+
+.jumbotron {
+  color: #333;
+  text-align: center;
+  padding: 10px 10px 20px 10px;
+}
+
+p {
+  color: #444;
+}
+
+a {
+  color: $main-color-dark;
+}
+
+#spinner {
+  display: block;
+  margin-top: 50px;
+  margin-bottom: 70px;
+}

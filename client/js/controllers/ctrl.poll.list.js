@@ -27,6 +27,5 @@ angular.module('app.polls', ['ngRoute','angularSpinners'])
       },
       function errorCallback(response){
         $scope.polls = null;
-        $scope.err_message = response;
       });
   }]);

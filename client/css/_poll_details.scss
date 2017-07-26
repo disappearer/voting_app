@@ -1,0 +1,36 @@
+#poll-btns {
+  margin: 15px 0 15px 0;
+  text-align: center;
+  .btn {
+    width: 80%;
+  }
+}
+
+#share-btn {
+  margin-top: 10px;
+}
+
+#poll-detail {
+  text-align: left;
+}
+
+#vote-alert {
+  text-align: center;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  border: $border;
+  border-radius: 5px;
+  background-color: $bg-color-light-gray;
+  display: inline-block;
+}
+
+#poll-chart-col {
+  text-align: center;
+}
+
+#remove-btn {
+  width: 70%;
+  margin-top: 20px;
+  background-color: #d33;
+  border-color: #b11;
+}
